@@ -331,7 +331,7 @@ class CommentNode {
 		const userIcon = renderUserIcon(this._comment.user.html_url, this._comment.user.avatar_url);
 		const reviewCommentContainer: HTMLDivElement = document.createElement('div');
 		reviewCommentContainer.className = 'review-comment-container';
-		this._commentContainer.appendChild(userIcon);
+
 		this._commentContainer.appendChild(reviewCommentContainer);
 
 		const commentHeader: HTMLDivElement = document.createElement('div');
@@ -353,6 +353,7 @@ class CommentNode {
 
 		this._commentBody.innerHTML  = md.render(emoji.emojify(this._comment.body));
 
+		commentHeader.appendChild(userIcon);
 		commentHeader.appendChild(authorLink);
 		commentHeader.appendChild(commentState);
 		commentHeader.appendChild(timestamp);
@@ -532,11 +533,13 @@ class ReviewNode {
 		timestamp.href = this._review.html_url;
 		timestamp.textContent = dateFromNow(this._review.submitted_at);
 
+		commentHeader.appendChild(userIcon);
 		commentHeader.appendChild(userLogin);
 		commentHeader.appendChild(reviewState);
 		commentHeader.appendChild(timestamp);
-		this._commentContainer.appendChild(userIcon);
+
 		const reviewCommentContainer = document.createElement('div');
+		reviewCommentContainer.className = 'review-comment-container';
 		this._commentContainer.appendChild(reviewCommentContainer);
 		reviewCommentContainer.appendChild(commentHeader);
 
@@ -548,9 +551,9 @@ class ReviewNode {
 		reviewBody.className = 'review-body';
 		if (this._review.body) {
 			reviewBody.innerHTML = md.render(emoji.emojify(this._review.body));
+			reviewCommentContainer.appendChild(reviewBody);
 		}
 
-		reviewCommentContainer.className = 'review-comment-container';
 		reviewCommentContainer.appendChild(reviewBody);
 
 		if (this._review.comments) {
