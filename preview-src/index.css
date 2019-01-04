@@ -7,7 +7,7 @@
 	--border-color: var(--vscode-notifications-border);
 }
 
-a:focus, input:focus, select:focus, textarea:focus {
+a:focus, input:focus, select:focus, textarea:focus, .title-text:focus {
 	outline: 1px solid var(--vscode-focusBorder);
 }
 
@@ -16,6 +16,10 @@ a:focus, input:focus, select:focus, textarea:focus {
 	align-items: flex-start;
 	margin-top: 20px;
 	border-bottom: 1px solid var(--border-color);
+}
+
+.title .pr-number {
+	margin-left: 5px;
 }
 
 .comment-body li div {
